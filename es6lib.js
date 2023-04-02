@@ -42,10 +42,22 @@ const downloadFileList = async (files, map = {}) => {
 		await downloadFileList(imports, map);
 	}
 };
+const update = async () => {
+	const names = fs.readdirSync('.');
+	const map = {};
+	for (let name of names) {
+		if (!name.endsWith('.js')) continue;
+		name = name.replace(/\.js$/, '');
+		await downloadFileList([ name ], map);
+	}
+};
 const main = async () => {
 	if (args[0] === 'download') {
 		await downloadFileList(args.slice(1));
 		return;
+	}
+	if (args[0] === 'update') {
+		await update();
 	}
 };
 main().catch(err => {
