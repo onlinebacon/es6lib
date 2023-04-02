@@ -4,6 +4,12 @@ class Vec3 extends Array {
 	constructor([ x = 0, y = 0, z = 0 ] = []) {
 		super([ x, y, z ]);
 	}
+	get x() { return this[0]; }
+	get y() { return this[1]; }
+	get z() { return this[2]; }
+	set x(val) { this[0] = val; }
+	set y(val) { this[1] = val; }
+	set z(val) { this[2] = val; }
 	rotateX(angle, dst = this) {
 		rotXVec3(this, angle, dst);
 		return dst;
@@ -16,12 +22,39 @@ class Vec3 extends Array {
 		rotZVec3(this, angle, dst);
 		return dst;
 	}
-	get x() { return this[0]; }
-	get y() { return this[1]; }
-	get z() { return this[2]; }
-	set x(val) { this[0] = val; }
-	set y(val) { this[1] = val; }
-	set z(val) { this[2] = val; }
+	scale(value, dst = this) {
+		const [ x, y, z ] = this;
+		dst[0] = x*value;
+		dst[1] = y*value;
+		dst[2] = z*value;
+		return dst;
+	}
+	add([ x, y, z ], dst = this) {
+		const [ tx, ty, tz ] = this;
+		dst[0] = tx + x;
+		dst[1] = ty + y;
+		dst[2] = tz + z;
+		return dst;
+	}
+	sub([ x, y, z ], dst = this) {
+		const [ tx, ty, tz ] = this;
+		dst[0] = tx - x;
+		dst[1] = ty - y;
+		dst[2] = tz - z;
+		return dst;
+	}
+	len() {
+		const [ x, y, z ] = this;
+		return Math.sqrt(x*x + y*y + z*z);
+	}
+	normalize(dst = this) {
+		const [ x, y, z ] = this;
+		const len = Math.sqrt(x*x + y*y + z*z);
+		dst[0] = x/len;
+		dst[1] = y/len;
+		dst[2] = z/len;
+		return dst;
+	}
 }
 
 export default Vec3;
