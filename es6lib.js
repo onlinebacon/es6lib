@@ -9,6 +9,10 @@ const getFile = (filename) => new Promise((done, fail) => {
 		res.on('error', fail);
 		res.on('data', chunk => chunks.push(chunk));
 		res.on('end', () => {
+			if (res.statusCode > 299) {
+				fail(new Error(`HTTP response status code: ${res.statusCode}`));
+				return;
+			}
 			const buffer = Buffer.concat(chunks);
 			done(buffer);
 		});
