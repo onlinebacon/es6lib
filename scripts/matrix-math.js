@@ -27,3 +27,11 @@ export const rotYVec3 = (vec3, angle, dst) => {
 export const rotZVec3 = (vec3, angle, dst) => {
 	sinCosRotZVec3(vec3, Math.sin(angle), Math.cos(angle), dst);
 };
+
+export const normalizeVec3 = (vec3, dst) => {
+	const [ x, y, z ] = vec3;
+	const len = Math.sqrt(x*x + y*y + z*z);
+	dst[0] = x/len;
+	dst[1] = y/len;
+	dst[2] = z/len;
+};
