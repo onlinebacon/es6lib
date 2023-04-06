@@ -12,7 +12,7 @@ const map = {
 const imperial = [ 'in', 'ft', 'mi' ];
 const metric = [ 'mm', 'cm', 'm', 'km' ];
 const valueRegex = /^\d+(\.\d+)?(e[-+]?\d+)?/i;
-class LengthUnits {
+export default class LengthUnits {
 	constructor(mainUnit = 'm', system = metric, digits = 6) {
 		this.mainUnit = mainUnit;
 		this.system = system;
