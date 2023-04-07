@@ -48,7 +48,7 @@ class Queue {
 		return match;
 	}
 }
-class Solver {
+export class ExprSolver {
 	constructor(source) {
 		this.queue = new Queue(source);
 	}
@@ -117,8 +117,3 @@ class Solver {
 		return val;
 	}
 }
-const solveExpr = (expr) => {
-	const solver = new Solver(expr);
-	return solver.run();
-};
-export default solveExpr;
