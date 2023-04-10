@@ -23,6 +23,9 @@ class DegreesConverter {
 		if (prefix) {
 			string = string.substring(1).trim();
 		}
+		if (string === '') {
+			return NaN;
+		}
 		let sum = 0;
 		let unit = 1;
 		while (string !== '') {
