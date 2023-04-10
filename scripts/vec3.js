@@ -55,6 +55,14 @@ class Vec3 extends Array {
 		dst[2] = z/len;
 		return dst;
 	}
+	apply(mat3, dst = this) {
+		const [ x, y, z ] = this;
+		const [ ix, iy, iz, jx, jy, jz, kx, ky, kz ] = mat3;
+		dst[0] = x*ix + y*jx + z*kx;
+		dst[1] = x*iy + y*jy + z*ky;
+		dst[2] = x*iz + y*jz + z*kz;
+		return dst;
+	}
 }
 
 export default Vec3;
