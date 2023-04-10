@@ -1,8 +1,8 @@
-const stringifyArcMins = (value) => {
+const stringifyArcMins = (value, [ pos, neg ]) => {
 	const totalArcMins = Math.round(Math.abs(value)*600)/10;
 	const arcMinsVal = totalArcMins % 60;
 	const degrees = Math.round((totalArcMins - arcMinsVal)/60);
-	const prefix = (value < 0) && (totalArcMins !== 0) ? '-' : '';
+	const prefix = (value < 0) && (totalArcMins !== 0) ? neg : pos;
 	if (arcMinsVal === 0) {
 		return prefix + degrees + '°';
 	}
@@ -55,8 +55,8 @@ class DegreesConverter {
 		}
 		return sum;
 	}
-	stringify(value) {
-		return this.stringifyFn(value);
+	stringify(value, prefix = [ '', '-' ]) {
+		return this.stringifyFn(value, prefix);
 	}
 }
 
